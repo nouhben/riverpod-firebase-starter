@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "196147338342",
+    "project_id": "riverpod-starter",
+    "storage_bucket": "riverpod-starter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196147338342:android:f3cf3fc46b4107c5f721a7",
+        "android_client_info": {
+          "package_name": "com.nouhben.firebase_riverpod_architecture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196147338342-0a3uc4r4rct8o0vral84lrusmjs7mr59.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nouhben.firebase_riverpod_architecture",
+            "certificate_hash": "d3f5a852fe5f9d2fd9fe438f44a7cd73b25b04bf"
+          }
+        },
+        {
+          "client_id": "196147338342-eddjd9bra39mcor2b6gjrpsjpkj39otf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCPLdqT1BhXsZMn81GYkp1av9Np0gd-0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196147338342-eddjd9bra39mcor2b6gjrpsjpkj39otf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "196147338342-2lsua7b3a1rs839mpkt2dord8596n8lc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nouhben.firebaseRiverpodArchitecture"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
