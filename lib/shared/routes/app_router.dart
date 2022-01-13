@@ -1,3 +1,4 @@
+import 'package:firebase_riverpod_architecture/services/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -7,10 +8,7 @@ class AppRoutes {
 }
 
 class AppRouter {
-  static Route<dynamic>? onGenerateRoute(
-    RouteSettings settings,
-    //FirebaseAuth firebaseAuth,
-  ) {
+  static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
     // switch (settings.name) {
     //   case AppRoutes.emailPasswordSignInPage:

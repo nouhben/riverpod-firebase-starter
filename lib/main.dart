@@ -3,6 +3,7 @@ import 'package:firebase_riverpod_architecture/screens/auth_widget.dart';
 import 'package:firebase_riverpod_architecture/screens/onboarding/onboarding_view_model.dart';
 import 'package:firebase_riverpod_architecture/screens/top_level_providers.dart';
 import 'package:firebase_riverpod_architecture/services/shared_preferences_service.dart';
+import 'package:firebase_riverpod_architecture/shared/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,6 +36,7 @@ class MyApp extends ConsumerWidget {
       title: 'Firebase Riverpod Architecture',
       theme: ThemeData(primarySwatch: Colors.indigo),
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: (settings) => AppRouter.onGenerateRoute(settings),
       home: AuthWidget(
         nonSignedInBuilder: (context) => Consumer(
           builder: (context, ref, _) {
