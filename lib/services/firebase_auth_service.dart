@@ -35,11 +35,13 @@ class FirebaseAuthService extends AuthService {
   }
 
   @override
-  Future createUserWithEmailAndPassword({
+  Future<User?> createUserWithEmailAndPassword({
     required String email,
     required String password,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    final result = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    return result.user;
   }
 
   @override

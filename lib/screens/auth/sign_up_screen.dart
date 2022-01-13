@@ -1,24 +1,25 @@
 import 'package:alert_dialogs/alert_dialogs.dart';
-import 'package:firebase_riverpod_architecture/screens/auth/sign_up_screen.dart';
 import 'package:firebase_riverpod_architecture/screens/top_level_providers.dart';
 import 'package:firebase_riverpod_architecture/shared/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'sign_in_view_model.dart';
+import 'sign_up_view_model.dart';
 import 'widgets/auth_form.dart';
 
-final signInModelProvider = ChangeNotifierProvider<SignInViewModel>(
-  (ref) => SignInViewModel(authService: ref.watch(firebaseAuthServiceProvider)),
+final signUpModelProvider = ChangeNotifierProvider.autoDispose<SignUpViewModel>(
+  (ref) => SignUpViewModel(
+    authService: ref.watch(firebaseAuthServiceProvider),
+  ),
 );
 
-class SignInScreen extends ConsumerWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class SignUpScreen extends ConsumerWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final signInModel = ref.watch(signInModelProvider);
-    ref.listen<SignInViewModel>(
-      signInModelProvider,
+    final signUpModel = ref.watch(signUpModelProvider);
+    ref.listen<SignUpViewModel>(
+      signUpModelProvider,
       (_, model) async {
         if (model.error != null) {
           await showExceptionAlertDialog(
@@ -29,20 +30,20 @@ class SignInScreen extends ConsumerWidget {
         }
       },
     );
-    return SignInScreenContent(
-      viewModel: signInModel,
-      title: 'Sign in',
+    return SignUpScreenContent(
+      viewModel: signUpModel,
+      title: 'Register',
     );
   }
 }
 
-class SignInScreenContent extends StatelessWidget {
-  const SignInScreenContent({
+class SignUpScreenContent extends StatelessWidget {
+  const SignUpScreenContent({
     Key? key,
     required this.viewModel,
     required this.title,
   }) : super(key: key);
-  final SignInViewModel viewModel;
+  final SignUpViewModel viewModel;
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -56,27 +57,16 @@ class SignInScreenContent extends StatelessWidget {
             height: 600.0,
             child: Column(
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const SignUpScreen(),
-                      ),
-                    );
-                  },
-                  child: const Text('Register a new account'),
-                ),
                 if (viewModel.isLoading)
                   const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(color: Colors.red),
                   ),
-                const SizedBox(height: 10.0),
                 Expanded(
                   child: AuthenticationForm(
-                    title: 'Sign in',
+                    title: 'Register',
                     authenticate: viewModel.isLoading
                         ? null
-                        : viewModel.signInEmailPassword,
+                        : viewModel.registerEmailPassword,
                   ),
                 ),
               ],
