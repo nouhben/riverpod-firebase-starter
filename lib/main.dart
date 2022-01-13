@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_riverpod_architecture/screens/auth/sign_in_screen.dart';
 import 'package:firebase_riverpod_architecture/screens/auth_widget.dart';
 import 'package:firebase_riverpod_architecture/screens/onboarding/onboarding_view_model.dart';
 import 'package:firebase_riverpod_architecture/screens/top_level_providers.dart';
@@ -7,6 +8,8 @@ import 'package:firebase_riverpod_architecture/shared/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'screens/onboarding/onboarding_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,13 +28,13 @@ void main() async {
   );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(firebaseAuthServiceProvider);
+  Widget build(BuildContext context) {
+    // final auth = ref.watch(firebaseAuthServiceProvider);
     return MaterialApp(
       title: 'Firebase Riverpod Architecture',
       theme: ThemeData(primarySwatch: Colors.indigo),
@@ -53,40 +56,34 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Home Page'),
-      ),
-    );
+  void _logout(WidgetRef ref) async {
+    final authService = ref.read(firebaseAuthServiceProvider);
+    await authService.signOut();
   }
-}
-
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Onboarding Page'),
+  Widget build(BuildContext context, ref) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        elevation: 0.0,
+        actions: [
+          TextButton.icon(
+            onPressed: () => _logout(ref),
+            icon: const Icon(Icons.logout),
+            label: const Text(
+              'Logout',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
-    );
-  }
-}
-
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('SignInScreen Page'),
+      body: const SafeArea(
+        child: Center(
+          child: Text('Home Page'),
+        ),
       ),
     );
   }
