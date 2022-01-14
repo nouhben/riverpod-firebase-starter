@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppRoutes {
   static const emailPasswordSignInPage = '/email-password-sign-in-page';
+  static const emailPasswordSignUpPage = '/email-password-sign-up-page';
   static const editJobPage = '/edit-job-page';
   static const entryPage = '/entry-page';
 }

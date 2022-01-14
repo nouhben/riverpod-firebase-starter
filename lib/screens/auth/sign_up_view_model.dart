@@ -13,7 +13,6 @@ class SignUpViewModel with ChangeNotifier {
   }) async {
     try {
       isLoading = true;
-
       await authService.createUserWithEmailAndPassword(
         email: email,
         password: password,

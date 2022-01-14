@@ -49,6 +49,8 @@ class MyApp extends StatelessWidget {
                 ? const OnboardingScreen()
                 : const SignInScreen();
           },
+
+          /// TODO: fix the auth when the user choses to register maybe add a wrapper with a ValueProvider
         ),
         signedInBuilder: (context) => const MyHomePage(),
       ),
